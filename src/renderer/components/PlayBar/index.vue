@@ -35,13 +35,13 @@
       />
     </div>
     <div class="bar4">
-      <z-icon type="tubiao" @click.native="showMusicView"/>
-      <a-tooltip :title="modeText">
+      <!-- <z-icon type="tubiao" @click.native="showMusicView"/> -->
+      <!-- <a-tooltip :title="modeText">
         <span @click="changeMode">
           <z-icon :type="modeIcon" />
         </span>
       </a-tooltip>
-      <z-icon type="geci" class="lrc" :class="{'active' : showDesktoplyric}" @click.native="toggleCurrentLyric"/>
+      <z-icon type="geci" class="lrc" :class="{'active' : showDesktoplyric}" @click.native="toggleCurrentLyric"/> -->
       <span class="count-wrapper" @click="showDrawer">
         <z-icon type="yinleliebiaokuai" />
         <span class="count">{{ current_play_list.length }}</span>
@@ -52,9 +52,12 @@
 
     <a-drawer placement="right" wrapClassName="play-history" :width="550" :closable="false" :visible="visible" @close="closeDrawer">
       <div class="play-history-title" slot="title">
+      <!-- <div class="play-history-title" > -->
         <a-radio-group v-model="playComponent" buttonStyle="solid">
-          <a-radio-button value="current-play-table">播放列表</a-radio-button>
-          <a-radio-button value="history-play-table">历史记录</a-radio-button>
+          <a-radio-button value="current-play-table">历史记录</a-radio-button>
+          <a-radio-button value="history-play-table">播放列表</a-radio-button>
+          <!-- <a-radio-button value="current-play-table">播放列表</a-radio-button> -->
+          <!-- <a-radio-button value="history-play-table">历史记录</a-radio-button> -->
         </a-radio-group>
       </div>
       <component :is="playComponent"></component>
@@ -84,7 +87,7 @@ export default {
       visible: false,
       lyricInstance: null,
       buffered: 0,
-      playComponent: 'current-play-table',
+      playComponent: "current-play-table",
       autoplay: false,
       // isMuted: false,
       isSongReady: false,
@@ -127,24 +130,24 @@ export default {
     mutedIcon () {
       return this.isMuted ? 'muted' : 'no-muted'
     },
-    modeIcon () {
-      return this.mode === playMode.sequence
-        ? 'liebiaoxunhuan'
-        : this.mode === playMode.loop
-          ? 'danquxunhuan1'
-          : this.mode === playMode.random
-            ? 'suijibofang'
-            : 'FMcollect'
-    },
-    modeText () {
-      return this.mode === playMode.sequence
-        ? '顺序播放'
-        : this.mode === playMode.loop
-          ? '循环播放'
-          : this.mode === playMode.random
-            ? '随机播放'
-            : '心动模式'
-    },
+    // modeIcon () {
+    //   return this.mode === playMode.sequence
+    //     ? 'liebiaoxunhuan'
+    //     : this.mode === playMode.loop
+    //       ? 'danquxunhuan1'
+    //       : this.mode === playMode.random
+    //         ? 'suijibofang'
+    //         : 'FMcollect'
+    // },
+    // modeText () {
+    //   return this.mode === playMode.sequence
+    //     ? '顺序播放'
+    //     : this.mode === playMode.loop
+    //       ? '循环播放'
+    //       : this.mode === playMode.random
+    //         ? '随机播放'
+    //         : '心动模式'
+    // },
     percent () {
       return this.currentTime / this.current_song.duration
     },
@@ -552,8 +555,9 @@ export default {
       z-index: 10;
     }
     .play-history-title {
-      display: flex;
-      justify-content: center;
+      // display: flex;
+      // justify-content: center;
+      float:right ;
       /deep/ .ant-radio-button-wrapper {
         height: 28px;
         line-height: 26px;

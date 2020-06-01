@@ -21,7 +21,7 @@ export default {
       default () {
         return [
           {
-            title: '个性推荐',
+            title: '推荐',
             href: '/home'
           },
           {

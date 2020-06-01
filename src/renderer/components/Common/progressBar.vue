@@ -80,6 +80,7 @@ export default {
       this.changeBufferedWidth(newPercent)
     }
   },
+
   methods: {
     handleResize () {
       this.changeBufferedWidth(this.bufferedPercent)
@@ -132,9 +133,12 @@ export default {
       this.progressbarTranslateX = offsetWidth
     },
     changeBufferedWidth (percent) {
-      const barWidth = this.$refs.progressBar.getBoundingClientRect().width
-      const offsetWidth = percent * barWidth
-      this.bufferedOffsetWidth = offsetWidth
+      if (typeof(this.$refs.progressBar.getBoundingClientRect()) != "undefined"){
+        const barWidth = this.$refs.progressBar.getBoundingClientRect().width
+        const offsetWidth = percent * barWidth
+        this.bufferedOffsetWidth = offsetWidth
+      }
+     
     }
   }
 }

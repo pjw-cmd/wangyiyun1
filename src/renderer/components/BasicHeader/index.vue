@@ -7,21 +7,21 @@
       <div class="top-bar-control">
         <controls />
       </div>
-      <div class="top-bar-search">
+      <!-- <div class="top-bar-search">
         <search-box />
-      </div>
+      </div> -->
       <div class="top-bar-menu">
         <div class="top-bar-menu-user">
           <div class="item">
             <user-info></user-info>
           </div>
-          <div class="item">
+          <!-- <div class="item">
             <theme-setting />
-          </div>
+          </div> -->
           <div class="item" @click="$router.push({path:'/setting'})">
             <a-icon type="setting" class="icon"/>
           </div>
-          <div class="item" @click="logout" v-if="userId">退出</div>
+          <div class="item" @click="logout" v-if="userInfo.userId">退出</div>
         </div>
         <frame-actions />
       </div>
@@ -50,17 +50,17 @@ export default {
   },
   computed: {
     ...mapGetters('App', ['primaryColor']),
-    ...mapGetters('User', ['userId']),
     ...mapGetters('play', [
       'current_song',
       'history_play_list',
       'current_play_list',
       'current_song_index'
     ]),
-    ...mapState(['User'])
+    ...mapState('User', ['userInfo'])
   },
   methods: {
     showLogin () {
+      console.log("BasicHeader/index"+this.userInfo.userId)
       this.$store.commit('User/SET_SHOW_LOGIN', true)
     },
     logout () {

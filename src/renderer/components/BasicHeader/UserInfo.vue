@@ -13,25 +13,30 @@
             <div class="user-box">
               <a-row type="flex" justify="space-between" align="middle">
                 <a-col>
-                  <router-link :to="`/user?id=${userInfo.profile.userId}`" class="username">
+                  <!-- <router-link :to="`/user?id=${userInfo.profile.userId}`" class="username">
                     <img v-lazy="`${userInfo.profile.avatarUrl}?param=50y50`" class="user-avatar" />
                     <span class="user-info-name">{{userInfo.profile.nickname}}</span>
                     <img src="./../../assets/images/vip.jpg" v-if="userInfo.profile.vipType"  class="img-vip" />
+                  </router-link>  -->
+                  <router-link :to="`/user?id=${userInfo.userId}`" class="username">
+                    <!-- <img v-lazy="`${userInfo.profile.avatarUrl}?param=50y50`" class="user-avatar" /> -->
+                    <span class="user-info-name">{{userInfo.userName}}</span>
+                    <!-- <img src="./../../assets/images/vip.jpg" v-if="userInfo.profile.vipType"  class="img-vip" /> -->
                   </router-link>
                 </a-col>
-                <a-col style="position: relative;">
+                <!-- <a-col style="position: relative;">
                   <a-button :icon="userInfo.pcSign ? 'check' : 'meh'" :disabled="userInfo.pcSign" class="sign-btn" @click="pcSign">
                     {{ userInfo.pcSign ? '已签到' : '签到' }}
                   </a-button>
                   <transition name="sign">
                     <div class="sign-point" v-if="showPoint">{{ signPoint }}</div>
                   </transition>
-                </a-col>
+                </a-col> -->
               </a-row>
 
-              <a-row class="list2" type="flex" justify="space-between" align="middle">
+              <!-- <a-row class="list2" type="flex" justify="space-between" align="middle">
                 <a-col :span="6">
-                  <router-link :to="`/user-event?uid=${userInfo.userId}&nickname=${userInfo.profile.nickname}`" class="list2-item">
+                  <router-link :to="`/user-event?uid=${userInfo.userId}&nickname=${userInfo.userName}`" class="list2-item">
                     <strong>{{ userInfo.profile.eventCount }}</strong>
                     <div>动态</div>
                   </router-link>
@@ -48,7 +53,7 @@
                     <div>粉丝</div>
                   </router-link>
                 </a-col>
-              </a-row>
+              </a-row> -->
             </div>
           </a-spin>
         </template>
@@ -57,13 +62,14 @@
             width="30"
             height="30"
             class="avatar"
-            v-lazy="`${userInfo.profile.avatarUrl}?param=30y30`"
-            :key="userInfo.profile.avatarUrl"
+            src="../../assets/images/ava.jpg"
+         
           />
-          <span class="header-user-info" :key="userInfo.profile.nickname" :title="userInfo.profile.nickname">
-            <span class="header-user-info-name">{{userInfo.profile.nickname}}</span>
-            <img src='./../../assets/images/vip.jpg' v-if="userInfo.profile.vipType" class="img-vip" />
-            <a-icon type="caret-down" />
+          <!-- <span class="header-user-info" :key="userInfo.userName" :title="userInfo.userName"> -->
+          <span class="header-user-info" :key="userInfo.userName" :title="userInfo.userName">
+            <span class="header-user-info-name">{{userInfo.userName}}</span>
+            <!-- <img src='./../../assets/images/vip.jpg' v-if="userInfo.profile.vipType" class="img-vip" /> -->
+            <!-- <a-icon type="caret-down" /> -->
           </span>
         </span>
       </a-popover>
@@ -92,27 +98,30 @@ export default {
     ...mapState('User', ['userInfo']),
     ...mapGetters('User', ['hasUserInfo']),
     userId () {
+      console.log("asd"+this.userInfo)
       return this.userInfo.userId
     }
   },
   methods: {
     showLogin () {
+      console.log("asd"+this.userInfo)
       this.$store.commit('User/SET_SHOW_LOGIN', true)
     },
-    async pcSign () {
-      let [err, res] = await this.$errorCaptured(daily_signin(1))
-      if (res) {
-        if (res.code === 200) {
-          this.$message.success('签到成功!')
-          this.signPoint = res.point
-          this.showPoint = true
-        }
-      }
-    },
+    // async pcSign () {
+    //   let [err, res] = await this.$errorCaptured(daily_signin(1))
+    //   if (res) {
+    //     if (res.code === 200) {
+    //       this.$message.success('签到成功!')
+    //       this.signPoint = res.point
+    //       this.showPoint = true
+    //     }
+    //   }
+    // },
     async refreshData (visible) {
       if (visible) {
         this.loadding = true
-        let [err, detail] = await this.$errorCaptured(user_detail(this.userId))
+        console.log("asd"+this.userInfo)
+        // let [err, detail] = await this.$errorCaptured(user_detail(this.userId))
         if (!err) {
           let userInfo = { ...this.userInfo }
           this.$store.commit('User/SET_USER_INFO', Object.assign(userInfo, { userId: this.userId, ...detail }))

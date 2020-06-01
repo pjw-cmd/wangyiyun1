@@ -6,9 +6,9 @@
     <a-button type="primary" @click="forward">
       <a-icon type="right" />
     </a-button>
-    <a-button type="primary" @click="refresh">
+    <!-- <a-button type="primary" @click="refresh">
       <a-icon type="reload" />
-    </a-button>
+    </a-button> -->
   </a-button-group>
 </template>
 

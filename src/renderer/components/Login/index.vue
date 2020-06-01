@@ -11,7 +11,7 @@
     <a-form id="login" :form="form" @submit="handleSubmit">
       <a-form-item>
         <a-input
-          v-decorator="['user_name',{rules: [{ required: true, pattern: /^1[3|4|5|7|8][0-9]{9}$/, message: '格式错误!' }]}]"
+          v-decorator="['user_name',{rules: [{ required: true, message: '用户不能为空!' }]}]"
           placeholder="用户名"
         >
           <!-- 改成我们需要的验证 -->
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapState, mapGetters } from 'vuex'
 // import { login_cellphone, user_detail } from '@/api/user'
 import { login, user_detail } from "@/api/user"
 import eventBus from "@/utils/eventBus"
@@ -47,7 +47,13 @@ export default {
     }
   },
   computed: {
+    
+   
+  },
+  computed: {
     ...mapState("App", ["redirect"]),
+    ...mapState('User', ['userInfo']),
+    ...mapGetters('User', ['hasUserInfo']),
     showLogin: {
       get () {
         return this.$store.state.User.showLogin
@@ -55,6 +61,9 @@ export default {
       set (value) {
         this.$store.commit("User/SET_SHOW_LOGIN", value)
       }
+    },
+    userId () {
+      return this.userInfo.userId
     }
   },
   watch: {
@@ -81,14 +90,15 @@ export default {
             let code = result.code
             let msg = result.msg
             if (code === 200) {
-              const { id } = values
-              localStorage.setItem("userId", id)
+              let user_id= result.content
+              console.log(user_id)
+              localStorage.setItem("userId", user_id)
               this.$store.commit("User/SET_SHOW_LOGIN", false)
-              const detail = await user_detail(id)
+              // const detail = await user_detail(id)
               this.$store.commit("User/SET_USER_INFO", {
-                userId: id,
-                account,
-                ...detail
+                userId: user_id,
+                userName:values.userName,
+                // ...detail
               })
               setTimeout(() => {
                 if (this.$route.name === "home") {

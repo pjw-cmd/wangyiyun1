@@ -22,7 +22,7 @@ let state = {
 }
 let getters = {
   hasUserInfo: state => Object.keys(state.userInfo).length > 0,
-  userId: state => ((Object.keys(state.userInfo).length > 0) && state.userInfo.profile.userId) || '',
+  userId: state => ((Object.keys(state.userInfo).length > 0) && state.userInfo.userId) || '',
   userPlaylists: state => state.userPlaylists,
   subscribedList: state => {
     return state.userPlaylists.filter(item => {

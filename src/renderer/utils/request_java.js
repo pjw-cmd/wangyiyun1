@@ -31,6 +31,7 @@ instance.interceptors.request.use(config => {
 
 instance.interceptors.response.use(
     response => {
+        console.log(response)
         if (typeof response.data === 'string') {
             response.data = JSON.parse(Base64.decode(response.data))
         }
