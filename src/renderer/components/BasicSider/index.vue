@@ -9,7 +9,7 @@
         <template v-for="item in recommendMap">
           <a-menu-item :key="item.name">
             <router-link class="link" :to="item.path">
-              <z-icon :type="item.meta.icon" />
+              <!-- <z-icon :type="item.meta.icon" /> -->
               <span>{{item.meta.title}}</span>
             </router-link>
           </a-menu-item>
@@ -22,7 +22,7 @@
         </div>
         <a-menu-item v-for="item in myMusicMap" :key="item.name">
           <router-link class="link" :to="item.path">
-            <z-icon :type="item.meta.icon" />
+            <!-- <z-icon :type="item.meta.icon" /> -->
             <span>{{item.meta.title}}</span>
           </router-link>
         </a-menu-item>

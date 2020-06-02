@@ -1,41 +1,41 @@
 <template>
   <home-layout>
     <div class="rank" v-if="!loading">
-      <header class="header">官方榜</header>
+      <!-- <header class="header">官方榜</header> -->
       <div class="first-four">
         <dl class="list" v-for="item in firstFour" :key="item.id">
           <dt class="title" :style="`background-image: url(${imgs[item.ToplistType]})`">
-            <span class="text">{{ item.updateTime | toDate('MM月DD日') }} 更新</span>
-            <a-icon type="play-circle" class="icon-play" @click="play(item.tracks, 0)"></a-icon>
+            <!-- <span class="text">{{ item.updateTime | toDate('MM月DD日') }} 更新</span> -->
+            <!-- <a-icon type="play-circle" class="icon-play" @click="play(item.tracks, 0)"></a-icon> -->
           </dt>
           <dd class="item" v-for="(track, i) in item.tracks" :key="track.id" @dblclick="play(item.tracks, i)">
             <span class="index" :class="{'highlight' : i < 3}">{{ i+1 }}</span>
             <span class="name">{{ track.name }}</span>
             <artists :artists="track.artist" class="artist" />
           </dd>
-          <footer class="footer">
+          <!-- <footer class="footer">
             <router-link :to="`/rank/${item.id}`">查看全部
               <a-icon type="right" />
             </router-link>
-          </footer>
+          </footer> -->
         </dl>
         <dl class="list" v-if="topArtist">
           <dt class="title" :style="`background-image: url(${imgs['A']})`">
-            <span class="text">{{ topArtist.updateTime | toDate('MM月DD日') }} 更新</span>
+            <!-- <span class="text">{{ topArtist.updateTime | toDate('MM月DD日') }} 更新</span> -->
           </dt>
           <router-link tag="dd" :to="`/artist/${artist.id}`" class="item"
                        v-for="(artist, i) in topArtist.artists.slice(0, 8)" :key="artist.id" style="cursor: pointer">
             <span class="index" :class="{'highlight' : i < 3}">{{ i+1 }}</span>
             <span class="name">{{ artist.name }}</span>
           </router-link>
-          <footer class="footer">
+          <!-- <footer class="footer">
             <router-link to="/artist-top">查看全部
               <a-icon type="right" />
             </router-link>
-          </footer>
+          </footer> -->
         </dl>
       </div>
-      <header class="header">全球榜</header>
+      <!-- <header class="header">全球榜</header>
       <a-row type="flex" :gutter="16" class="rank-row">
         <a-col :xl="4" :lg="6" class="rank-col" v-for="item in rest" :key="item.id">
           <router-link class="rank-item" :to="`/rank/${item.id}`">
@@ -49,7 +49,7 @@
             <div class="name">{{item.name}}</div>
           </router-link>
         </a-col>
-      </a-row>
+      </a-row> -->
     </div>
     <loading v-else />
   </home-layout>

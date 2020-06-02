@@ -6,7 +6,13 @@
     @mouseout="play()"
     v-if="list.length"
   >
-    <div ref="content" class="slider-content" :class="mask ? 'mask' : ''">
+    <a-carousel arrows dots-class="slick-dots slick-thumb" autoplay>
+  
+      <div v-for="(item,index) in list" :key="index">
+        <img style="width:100%" :src="`${item.src}`" />
+      </div>
+    </a-carousel>
+    <!-- <div ref="content" class="slider-content" :class="mask ? 'mask' : ''">
       <div
         ref="slider"
         class="slider"
@@ -18,34 +24,32 @@
       >
         <div class="badge" :style="`background:${item.titleColor}`">{{ item.typeTitle }}</div>
       </div>
-      <a-icon type="left" v-show="arrow" class="icon-left" @click="prev()"></a-icon>
-      <a-icon type="right" v-show="arrow" class="icon-right" @click="next()"></a-icon>
-    </div>
-    <div class="dots" v-if="dots">
+    </div>-->
+    <!-- <div class="dots" v-if="dots">
       <span
         v-for="(item, index) in list"
         :key="index"
         :style="setActiveDot(index)"
         @mouseover="currentIndex = index"
       ></span>
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       currentIndex: 0,
       sliderDomList: [],
       timer: null
-    }
+    };
   },
   props: {
     list: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     width: {
@@ -57,7 +61,7 @@ export default {
     },
     imgType: {
       type: String,
-      default: 'percentage'
+      default: "percentage"
     },
     autoPlay: {
       type: Boolean,
@@ -81,99 +85,109 @@ export default {
     },
     color: {
       type: String,
-      default: 'rgb(248, 85, 85)'
+      default: "rgb(248, 85, 85)"
     }
   },
   computed: {
-    sliderStyle () {
+    sliderStyle() {
       return {
-        width: this.width ? this.width + 'px' : '100%',
-        height: this.height === 0 ? '240px' : this.height + 'px',
-        perspective: this.width + 'px',
+        width: this.width ? this.width + "px" : "100%",
+        height: this.height === 0 ? "240px" : this.height + "px",
+        perspective: this.width + "px",
         backgroundSize:
-          this.imgType == 'percentage' ? '100% 100%' : this.imgType
-      }
+          this.imgType == "percentage" ? "100% 100%" : this.imgType
+      };
     },
-    sliderHeight () {
-      let h = document.querySelector('.slider-container') && document.querySelector('.slider-container').getBoundingClientRect().height
-      return `${h * 0.37}px`
+    sliderHeight() {
+      let h =
+        document.querySelector(".slider-container") &&
+        document.querySelector(".slider-container").getBoundingClientRect()
+          .height;
+      return `${h * 0.37}px`;
     }
   },
-  mounted () {
-    this.play()
+  mounted() {
+    this.play();
     this.$nextTick(() => {
-      this.sliderDomList = this.$refs.slider
-    })
+      this.sliderDomList = this.$refs.slider;
+    });
   },
   methods: {
-    setClass (i) {
+    getImgUrl(i) {
+      console.log(list[i].src)
+      return list[i].src;
+    },
+    setClass(i) {
       let next =
-        this.currentIndex === this.list.length - 1 ? 0 : this.currentIndex + 1
+        this.currentIndex === this.list.length - 1 ? 0 : this.currentIndex + 1;
       let prev =
-        this.currentIndex === 0 ? this.list.length - 1 : this.currentIndex - 1
+        this.currentIndex === 0 ? this.list.length - 1 : this.currentIndex - 1;
       switch (i) {
         case this.currentIndex:
-          return 'active'
+          return "active";
         case next:
-          return 'next'
+          return "next";
         case prev:
-          return 'prev'
+          return "prev";
         default:
-          return ''
+          return "";
       }
     },
-    setBGImg (src) {
+    setBGImg(src) {
       return {
         backgroundImage: `url(${src})`
-      }
+      };
     },
-    setActiveDot (index) {
+    setActiveDot(index) {
       return index === this.currentIndex
         ? {
-          backgroundColor: this.color
-        }
+            backgroundColor: this.color
+          }
         : {
-          backgroundColor: '#ccc'
-        }
+            backgroundColor: "#ccc"
+          };
     },
-    play () {
-      this.pause()
+    play() {
+      this.pause();
       if (this.autoPlay) {
         this.timer = setInterval(() => {
-          this.next()
-        }, this.interval)
+          this.next();
+        }, this.interval);
       }
     },
-    pause () {
-      clearInterval(this.timer)
+    pause() {
+      clearInterval(this.timer);
     },
-    next () {
-      this.currentIndex = ++this.currentIndex % this.list.length
+    next() {
+      this.currentIndex = ++this.currentIndex % this.list.length;
     },
-    prev () {
+    prev() {
       this.currentIndex =
-        this.currentIndex === 0 ? this.list.length - 1 : this.currentIndex - 1
+        this.currentIndex === 0 ? this.list.length - 1 : this.currentIndex - 1;
     },
-    onClick (i, item) {
+    onClick(i, item) {
       if (i === this.currentIndex) {
-        this.$emit('sliderClick', i, item)
+        this.$emit("sliderClick", i, item);
       } else {
         if (!this.sliderDomList) {
-          this.sliderDomList = this.$refs.slider
+          this.sliderDomList = this.$refs.slider;
         }
-        let currentClickClassName = this.sliderDomList[i].classList[1]
-        if (currentClickClassName === 'next') {
-          this.next()
+        let currentClickClassName = this.sliderDomList[i].classList[1];
+        if (currentClickClassName === "next") {
+          this.next();
         } else {
-          this.prev()
+          this.prev();
         }
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
+.bbb {
+  width: 80%;
+}
 .slider-container {
   box-sizing: content-box;
   width: 100%;
@@ -200,15 +214,16 @@ export default {
       left: 50%;
       width: 70%;
       height: 100%;
-      transition: 0.4s transform ease-out, .35s filter cubic-bezier(0.32, 0.04, 0.87, 0.65);
+      transition: 0.4s transform ease-out,
+        0.35s filter cubic-bezier(0.32, 0.04, 0.87, 0.65);
       background-color: #fff;
       background-repeat: no-repeat;
       background-position: center;
       background-size: inherit;
-      transform: translate3d(-50%, 1px, -80px) scale3d(.9, .9, 1);
+      transform: translate3d(-50%, 1px, -80px) scale3d(0.9, 0.9, 1);
       transform-origin: center bottom;
       z-index: 1;
-      filter: brightness(.3);
+      filter: brightness(0.3);
       .badge {
         position: absolute;
         right: -2px;
@@ -220,7 +235,7 @@ export default {
         color: #fff;
         border-radius: 9px 0 0 9px;
         font-size: 12px;
-        filter: brightness(.93);
+        filter: brightness(0.93);
       }
       &:before {
         position: absolute;
@@ -230,8 +245,8 @@ export default {
         top: 0;
         left: 0;
         background-color: rgba(0, 0, 0, 0);
-        transition-delay: .1s !important;
-        transition: all .5s;
+        transition-delay: 0.1s !important;
+        transition: all 0.5s;
       }
       &.active {
         transform: translate3d(-50%, 0, 0);
@@ -239,21 +254,18 @@ export default {
         z-index: 20;
       }
       &.prev {
-        transform: translate3d(-76.5%, 0, 0) scale3d(.9,.9,1);
+        transform: translate3d(-76.5%, 0, 0) scale3d(0.9, 0.9, 1);
         z-index: 18;
       }
       &.next {
-        transform: translate3d(-23.5%, 0,0) scale3d(.9,.9,1);
+        transform: translate3d(-23.5%, 0, 0) scale3d(0.9, 0.9, 1);
         z-index: 18;
       }
-
     }
-    &.mask
-      .slider
-        &.prev, &.next
-          &:before {
-            background-color: rgba(0, 0, 0, .5);
-          }
+    &.mask .slider &.prev,
+    &.next &:before {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
     i {
       display: none;
       position: absolute;

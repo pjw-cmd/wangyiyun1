@@ -23,14 +23,14 @@ let myMusicRoutes = [
   //     title: '我的音乐云盘', icon: 'cloud', auth: true
   //   }
   // },
-  {
-    path: '/music_collect',
-    component: () => import(/* webpackChunkName: "music_collect" */ '@/views/User/Collect/index.vue'),
-    name: 'music_collect',
-    meta: {
-      title: '我的收藏', icon: 'collect', auth: true
-    }
-  }
+  // {
+  //   path: '/music_collect',
+  //   component: () => import(/* webpackChunkName: "music_collect" */ '@/views/User/Collect/index.vue'),
+  //   name: 'music_collect',
+  //   meta: {
+  //     title: '我的收藏', icon: 'collect', auth: true
+  //   }
+  // }
 ]
 
 let myMusicMap = []

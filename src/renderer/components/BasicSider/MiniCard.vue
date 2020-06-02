@@ -12,20 +12,20 @@
       <section class="card-info">
         <header class="info-header">
           <h5 class="songname" :title="current_song.name">{{current_song.name}}</h5>
-          <span class="icon-wrapper" v-if="!current_song.folder">
+          <!-- <span class="icon-wrapper" v-if="!current_song.folder">
             <song-heart
               :isLiked="likedsongIds.includes(current_song.id)"
               @heartClick="(isLike)=>{handleLikeSong({songId:current_song.id,isLike})}"
             />
-          </span>
+          </span> -->
         </header>
         <footer class="info-footer">
           <div class="artist" @click.stop>
             <artists :artists="current_song.artist" style="paddingLeft:10px" />
           </div>
-          <span class="icon-wrapper" @click.stop="showShareWindow" v-if="!current_song.folder">
+          <!-- <span class="icon-wrapper" @click.stop="showShareWindow" v-if="!current_song.folder">
             <z-icon type="share" />
-          </span>
+          </span> -->
         </footer>
       </section>
     </div>

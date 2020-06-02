@@ -48,7 +48,8 @@ import {
   Drawer,
   Skeleton,
   Comment,
-  ConfigProvider
+  ConfigProvider,
+  Carousel
 } from 'ant-design-vue'
 import Toast from './../components/Toast/toast'
 
@@ -107,3 +108,6 @@ Vue.use(Upload)
 Vue.use(Skeleton)
 Vue.use(Comment)
 Vue.use(ConfigProvider)
+
+
+Vue.use(Carousel)

@@ -1,12 +1,12 @@
 <template>
   <div class="frame-actions">
-    <a-icon type="shrink" class="item" @click="setFrame('mini')" />
-    <a-icon type="minus" class="item" @click="setFrame('min')" />
+    <!-- <a-icon type="shrink" class="item" @click="setFrame('mini')" /> -->
+    <!-- <a-icon type="minus" class="item" @click="setFrame('min')" />
     <z-icon
       :type="isMax ? 'tuichuquanping' : 'juxing'"
       class="item"
       @click.native="setFrame('plus')"
-    />
+    /> -->
     <a-icon type="close" class="item" @click="setFrame('close')" />
   </div>
 </template>

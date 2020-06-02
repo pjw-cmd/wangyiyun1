@@ -7,8 +7,8 @@ import { recommendRoutes } from './modules/recommend'
 import { myMusicRoutes } from './modules/myMusic'
 import { playlistRoutes } from './modules/playlist'
 import { artistRoutes } from './modules/artist'
-import { albumRoutes } from './modules/album'
-import { djRoutes } from './modules/dj'
+// import { albumRoutes } from './modules/album'
+// import { djRoutes } from './modules/dj'
 import { rankRoutes } from './modules/rank'
 import { settingRoutes } from './modules/setting'
 import { searchRoutes } from './modules/search'
@@ -31,12 +31,12 @@ const router = new Router({
         ...myMusicRoutes,
         ...playlistRoutes,
         ...artistRoutes,
-        ...albumRoutes,
+        // ...albumRoutes,
         ...searchRoutes,
         ...videoRoutes,
         ...userRoutes,
         ...settingRoutes,
-        ...djRoutes,
+        // ...djRoutes,
         {
           path: '/offline',
           name: 'offline',

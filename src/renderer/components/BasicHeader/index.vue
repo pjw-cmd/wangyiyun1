@@ -1,7 +1,8 @@
 <template>
   <div class="top-bar">
     <div class="top-bar-logo">
-      <img src="../../assets/images/logo.svg" alt="LOGO">
+      <span>云音乐</span>
+      <!-- <img src="../../assets/images/logo.svg" alt="LOGO"> -->
     </div>
     <div class="top-bar-main">
       <div class="top-bar-control">
@@ -18,9 +19,9 @@
           <!-- <div class="item">
             <theme-setting />
           </div> -->
-          <div class="item" @click="$router.push({path:'/setting'})">
+          <!-- <div class="item" @click="$router.push({path:'/setting'})">
             <a-icon type="setting" class="icon"/>
-          </div>
+          </div> -->
           <div class="item" @click="logout" v-if="userInfo.userId">退出</div>
         </div>
         <frame-actions />
@@ -137,11 +138,13 @@ export default {
   .top-bar-logo {
     display: flex;
     align-items: center;
-    width: 200px;
-    flex: 0 0 200px;
-    padding-left: 15px;
-    img {
+    width: 100px;
+    // flex: 0 0 200px;
+    // padding-left: 15px;
+    span {
       width: 140px;
+      text-align:center;
+      font-weight: bold;
     }
   }
   .top-bar-main {

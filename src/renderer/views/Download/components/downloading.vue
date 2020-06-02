@@ -2,7 +2,7 @@
   <div class="downloading">
     <a-card :bordered="false">
       <div slot="title">
-        <a-button icon="delete" :disabled="!downloading.length" @click="openDownloadFolder">清空全部</a-button>
+        <!-- <a-button icon="delete" :disabled="!downloading.length" @click="openDownloadFolder">清空全部</a-button> -->
 
         <span>存储目录:{{ defaultDownloadFolder }} <a href="#" @click="openDownloadFolder">打开目录</a></span>
       </div>

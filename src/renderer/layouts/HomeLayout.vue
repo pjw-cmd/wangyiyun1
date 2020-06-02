@@ -8,7 +8,7 @@
     <section class="wy-wrapper">
       <slot></slot>
     </section>
-    <slot name="footer"></slot>
+   
   </section>
 </template>
 
@@ -27,11 +27,7 @@ export default {
           {
             title: '歌单',
             href: '/playlist'
-          },
-          // {
-          //   title: '主播电台',
-          //   href: '/dj'
-          // },
+          },        
           {
             title: '排行榜',
             href: '/rank'
@@ -40,10 +36,6 @@ export default {
             title: '歌手',
             href: '/artist'
           },
-          {
-            title: '最新音乐',
-            href: '/newSong'
-          }
         ]
       }
     }

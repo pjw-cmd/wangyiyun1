@@ -104,7 +104,6 @@ export default {
   },
   methods: {
     showLogin () {
-      console.log("asd"+this.userInfo)
       this.$store.commit('User/SET_SHOW_LOGIN', true)
     },
     // async pcSign () {
