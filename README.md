@@ -26,7 +26,7 @@ npm run start
   - datastore
   - directives 
   - filters  
-  - layouts 布局，类似国家战略 
+  - layouts 布局
   - mixins 
   - plugins 
   - router 页面导航逻辑
