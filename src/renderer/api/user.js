@@ -117,18 +117,18 @@ export function getUserCloud(uid) {
   })
 }
 
-// 获取用户喜欢歌曲列表
-export function getUserLikeSongs(uid) {
-  let params = {
-    uid
-  }
-  if (process.env.NODE_ENV === 'production') {
-    params.timestamp = new Date().getTime()
-  }
-  return request.get('/likelist', {
-    params
-  })
-}
+// // 获取用户喜欢歌曲列表
+// export function getUserLikeSongs(uid) {
+//   let params = {
+//     uid
+//   }
+//   if (process.env.NODE_ENV === 'production') {
+//     params.timestamp = new Date().getTime()
+//   }
+//   return request.get('/likelist', {
+//     params
+//   })
+// }
 
 // 喜欢音乐
 export function likeMusic(musicId, isLike) {

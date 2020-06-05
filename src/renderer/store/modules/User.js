@@ -79,12 +79,12 @@ let actions = {
     commit('SET_USER_PLAYLISTS', playlist)
     // return playlist
   },
-  async getUserLikedSongs ({ commit, getters }) {
-    if (getters.userId) {
-      let { ids } = await getUserLikeSongs(getters.userId)
-      commit('SET_LIKEDSONG_IDS', ids)
-    }
-  },
+  // async getUserLikedSongs ({ commit, getters }) {
+  //   if (getters.userId) {
+  //     let { ids } = await getUserLikeSongs(getters.userId)
+  //     commit('SET_LIKEDSONG_IDS', ids)
+  //   }
+  // },
   // 收藏/取消收藏歌单
   async subscribePlatlist ({ commit, state }, { t, playlist }) {
     let pid = playlist.id
