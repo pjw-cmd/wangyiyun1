@@ -1,3 +1,4 @@
+
 <template>
   <li :class="itemCls">
     <div @click="goRoute" class="info" :style="styleObj">
@@ -44,11 +45,15 @@ export default {
       if ( this.item.url ) {
         window.open(this.item.url)
       } else if ( this.itemType == 'mv' && typeof this.item.id == 'number' ) {
-        this.$router.push(`/mv/${this.item.id}`)
+        console.log('list-item.vue.mv'+this.item.id);
+        // 跳转到mv
+        this.$router.push(`/mv/${this.item.id}`)    
       } else if ( this.itemType == 'video' ) {
-        this.$router.push(`/video/${this.item.videoId}`)
+        console.log('list-item.vue.video'+this.item.videoId);
+        this.$router.push(`/video/${this.item.videoId}`)  // 跳转到视频
       } else {
-        this.$router.push(`/playlist/${this.item.id}`)
+        console.log("list-item.vue.-playlist"+this.item.id);
+        this.$router.push(`/playlist/${this.item.id}`)   // 跳转到歌单  这个playlist是值外面/views/Playlist
       }
     }
   },

@@ -1,3 +1,4 @@
+<!-- 发现音乐的推荐歌单卡片 -->
 <template>
   <div class="playlist">
     <ul class="list">

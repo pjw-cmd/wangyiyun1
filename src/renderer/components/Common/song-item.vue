@@ -17,12 +17,12 @@
           <small class="alias" v-if="song.alia && song.alia.length">{{song.alia[0]}}</small>
           <a-icon type="youtube" class="icon-mv" v-if="song.mvid && showMore"/>
         </div>
-        <div v-if="!showMore">
+        <!-- <div v-if="!showMore">
           <router-link :to="`/mv/${song.mvid}`" title="查看MV" v-if="song.mvid">
             <a-icon type="youtube" class="icon-mv" />
           </router-link>
           <artists :artists="song.artist" @click.native.stop />
-        </div>
+        </div> -->
       </div>
       <template v-if="showMore">
         <div class="extra-item artist">
@@ -54,7 +54,10 @@ export default {
     Artists
   },
   methods: {
+
     onClick (song, index) {
+      console.log("song_item");
+      console.log(song);
       this.$emit('onclick', song, index)
     }
   }

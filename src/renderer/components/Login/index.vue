@@ -59,7 +59,7 @@
             <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
-         <a-form-item>
+        <a-form-item>
           <a-input
             v-decorator="['user_password',{rules: [{ required: true, message: '密码不能为空!' }]}]"
             type="password"
@@ -115,7 +115,7 @@ export default {
     showLogin(newVal) {
       if (newVal) {
         this.loading = false;
-        this.now_login=true;
+        this.now_login = true;
       }
     }
   },
@@ -133,15 +133,12 @@ export default {
       this.form.validateFields(async (err, values) => {
         if (!err) {
           try {
-            console.log(values);
             const result = await login(values);
-            console.log(result);
             // let { code, account } = await login(values)
             let code = result.code;
             let msg = result.msg;
             if (code === 200) {
-              let user_id = result.content;
-              console.log(user_id);
+              let user_id = result.data;
               localStorage.setItem("userId", user_id);
               this.$store.commit("User/SET_SHOW_LOGIN", false);
               // const detail = await user_detail(id)

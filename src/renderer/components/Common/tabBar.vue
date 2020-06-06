@@ -8,7 +8,7 @@
       >{{tab.label}}</router-link>-->
       <router-link :to="{name:tab.name}" v-for="(tab , index) in tabs" :key="index">{{tab.label}}</router-link>
     </nav>
-    <div class="tab-bar-extra-content" v-if="showSearch">
+    <!-- <div class="tab-bar-extra-content" v-if="showSearch">
       <a-input-search
         size="small"
         placeholder="搜索歌单音乐"
@@ -17,7 +17,7 @@
         @change="onChange"
         @search="onSearch"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
         ]
       }
     },
-    showSearch: { type: Boolean, default: true }
+    showSearch: { type: Boolean, default: false }
   },
   methods: {
     onSearch (value) {

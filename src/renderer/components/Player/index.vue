@@ -9,10 +9,10 @@
               <img :src="current_song.avatar" class="song-avatar" />
             </div>
             <div class="actions" v-if="current_song">
-              <a-button :disabled="!!current_song.folder" @click="_handleLikeSong">
+              <!-- <a-button :disabled="!!current_song.folder" @click="_handleLikeSong">
                   <song-heart :isLiked="isLiked" style="marginRight:4px"/>
                   <span>喜欢</span>
-              </a-button>
+              </a-button> -->
               <collect-btn />
               <a-button icon="share-alt" :disabled="!!current_song.folder" @click="share">
                 分享
@@ -180,9 +180,9 @@ export default {
     ...mapGetters('User', [
       'likedsongIds', 'createdList', 'userId'
     ]),
-    isLiked () {
-      return this.likedsongIds.includes(this.current_song.id)
-    },
+    // isLiked () {
+    //   return this.likedsongIds.includes(this.current_song.id)
+    // },
     lineCls () {
       return this.playing ? 'track-line' : 'track-line paused'
     },
@@ -337,9 +337,9 @@ export default {
         $state.complete()
       }
     },
-    _handleLikeSong () {
-      this.$store.dispatch('User/handleLikeSong', { songId: this.current_song.id, isLike: !this.isLiked })
-    },
+    // _handleLikeSong () {
+    //   this.$store.dispatch('User/handleLikeSong', { songId: this.current_song.id, isLike: !this.isLiked })
+    // },
     download (song) {
       // if (this.downloaded.findIndex(item => item.id === this.current_song.id) >= 0) return
       this.$store.dispatch('Download/adddownloadQueue', [song])

@@ -2,6 +2,7 @@
   <div>
     <transition name="track-list">
       <div class="track-list" v-if="songs.length">
+        <!-- 标题栏 -->
         <div v-if="isShowHead">
           <slot name="header" v-if="$slots && $slots.header"></slot>
           <div class="track-list-header" v-else>
@@ -43,11 +44,11 @@
                     <span v-else>{{ rowIndex > 8 ? rowIndex + 1 : '0' + (rowIndex + 1) }}</span>
                   </div>
                   <div class="col-item col-actions" v-if="isShowActions">
-                    <song-heart
+                    <!-- <song-heart
                       :disable = "row.songHeartDisable"
                       :isLiked="likedsongIds.includes(row.id)"
                       @heartClick="(isLike) => {_handleLikeSong(row, { songId: row.id, isLike })}"
-                    />
+                    /> -->
 
                     <template v-if="downloaded.findIndex(item => item.id === row.id) >= 0">
                       <a-icon
@@ -116,7 +117,7 @@
                       <span>下一首播放</span>
                     </div>
                   </a-menu-item>
-                  <a-sub-menu key="1">
+                  <!-- <a-sub-menu key="1">
                     <template slot="title">
                       <a-icon type="folder-add" />
                       <span>收藏到歌单</span>
@@ -133,7 +134,7 @@
                         <span>{{ playlist.name }}</span>
                       </div>
                     </a-menu-item>
-                  </a-sub-menu>
+                  </a-sub-menu> -->
                 </a-menu>
               </a-dropdown>
             </li>
@@ -165,10 +166,10 @@ import Playing from '@/components/Common/playing'
 import Loading from '@/components/Common/loading'
 import SongHeart from '@/components/Common/song-heart'
 
-import Artist from './base/artist'
-import Album from './base/album'
-import Duration from './base/duration'
-import SongName from './base/songName'
+import Artist from './base/artist'   
+import Album from './base/album'     // 专辑
+import Duration from './base/duration'   
+import SongName from './base/songName'  // 歌曲名字
 import DefaultComponent from './base/default'
 import ContextMenu from './base/contextMenu'
 
@@ -280,7 +281,8 @@ export default {
       'current_song_index',
       'source'
     ]),
-    ...mapGetters('User', ['userId', 'likedsongIds', 'createdList'])
+    // ...mapGetters('User', ['userId', 'likedsongIds', 'createdList'])
+    ...mapGetters('User', ['userId','createdList'])
   },
   watch: {
     tracks (newTranck) {
@@ -291,9 +293,9 @@ export default {
       }
     }
   },
-  activated () {
-    this.$store.state.App.isOnliline && this._getUserLikelist(this.userId)
-  },
+  // activated () {
+  //   this.$store.state.App.isOnliline && this._getUserLikelist(this.userId)
+  // },
   created () {
     ipcRenderer.on(
       'download-onProgress',
@@ -339,21 +341,21 @@ export default {
     nextPlay (song) {
       this.$store.dispatch('play/nextPlay', song)
     },
-    async collectToPlaylist (playlist, song) {
-      let options = {
-        op: 'add',
-        tracks: song.id,
-        pid: playlist.id
-      }
-      let { code, trackIds } = await addSongToList(options)
-      trackIds = JSON.parse(trackIds)
-      if (code === 200) {
-        this.$message.success('添加成功!')
-        let likedsongIds = this.likedsongIds.slice()
-        likedsongIds.unshift(...trackIds)
-        this.$store.commit('User/SET_LIKEDSONG_IDS', likedsongIds)
-      }
-    },
+    // async collectToPlaylist (playlist, song) {
+    //   let options = {
+    //     op: 'add',
+    //     tracks: song.id,
+    //     pid: playlist.id
+    //   }
+    //   let { code, trackIds } = await addSongToList(options)
+    //   trackIds = JSON.parse(trackIds)
+    //   if (code === 200) {
+    //     this.$message.success('添加成功!')
+    //     let likedsongIds = this.likedsongIds.slice()
+    //     likedsongIds.unshift(...trackIds)
+    //     this.$store.commit('User/SET_LIKEDSONG_IDS', likedsongIds)
+    //   }
+    // },
     createAndAddToPlaylist () {
       if (this.formData.name === '') return
       this.$store
@@ -373,15 +375,15 @@ export default {
       this.visible = true
       this.targetSong = row
     },
-    _getUserLikelist (userId) {
-      this.getUserLikedSongs()
-    },
-    _handleLikeSong (row, { songId, isLike }) {
-      this.$set(row, 'songHeartDisable', true)
-      this.handleLikeSong({ songId, isLike }).then(() => {
-        this.$set(row, 'songHeartDisable', false)
-      })
-    },
+    // _getUserLikelist (userId) {
+    //   this.getUserLikedSongs()
+    // },
+    // _handleLikeSong (row, { songId, isLike }) {
+    //   this.$set(row, 'songHeartDisable', true)
+    //   this.handleLikeSong({ songId, isLike }).then(() => {
+    //     this.$set(row, 'songHeartDisable', false)
+    //   })
+    // },
     download (song) {
       // this.$set(song, 'isWaitting', true)
       this.$store.dispatch('Download/adddownloadQueue', [song])

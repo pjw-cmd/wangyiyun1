@@ -3,8 +3,8 @@ import { login_refresh, logout } from './../../api/login'
 import {
   getUserPlaylist,
   getUserLikeSongs,
-  likePlaylist,
-  likeMusic,
+  // likePlaylist,
+  // likeMusic,
   deletePlaylist,
   createPlaylist,
   subDj,
@@ -18,7 +18,7 @@ let state = {
   userInfo: {},
   userDetail: '',
   userPlaylists: [], // 用户收藏的歌单
-  likedsongIds: [] // 喜欢的歌曲id列表
+  // likedsongIds: [] // 喜欢的歌曲id列表
 }
 let getters = {
   hasUserInfo: state => Object.keys(state.userInfo).length > 0,
@@ -36,8 +36,8 @@ let getters = {
       // return item.creator.userId === state.userInfo.userId
     })
   },
-  likedPlaylistIds: state => state.userPlaylists.map(item => item.id),
-  likedsongIds: state => state.likedsongIds
+  // likedPlaylistIds: state => state.userPlaylists.map(item => item.id),
+  // likedsongIds: state => state.likedsongIds
 }
 
 let mutations = {
@@ -75,7 +75,9 @@ let actions = {
     }
   },
   async getUserPlaylists ({ commit, getters }) {
-    let { playlist } = await getUserPlaylist(getters.userId)
+
+    let result = await getUserPlaylist(getters.userId)
+    let playlist=result.data
     commit('SET_USER_PLAYLISTS', playlist)
     // return playlist
   },

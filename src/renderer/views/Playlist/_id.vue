@@ -1,3 +1,5 @@
+<!-- 显示某个具体的歌单 -->
+
 <template>
   <div>
     <loading v-show="loading" />
@@ -20,7 +22,7 @@
                   <a-button type="primary" icon="plus" title="添加所有到播放列表" @click="addToList" />
                 </a-button-group>
               </li>
-              <li class="item">
+              <!-- <li class="item">
                 <a-button size="small" icon="check" @click="subscribe(2, playlist)" v-if="isLiked">
                   已收藏({{playlist.subscribedCount}})
                 </a-button>
@@ -30,7 +32,7 @@
               </li>
               <li class="item" @click="share">
                 <a-button size="small" icon="share-alt">分享({{playlist.shareCount}})</a-button>
-              </li>
+              </li> -->
               <li class="item">
                 <a-button size="small" @click="downloadAll"><z-icon type="download"></z-icon> 下载全部</a-button>
               </li>
@@ -65,7 +67,7 @@
       </a-list-item>
     </a-list>
 
-    <tab-bar @search="searchSongs" />
+    <!-- <tab-bar @search="searchSongs" /> -->
     <keep-alive>
       <router-view :tracks="songs"/>
     </keep-alive>
@@ -74,7 +76,7 @@
 
 <script>
 import { getPlaylistDetail } from '@/api/playlist'
-import TabBar from '@/components/Common/tabBar'
+// import TabBar from '@/components/Common/tabBar'
 import Loading from '@/components/Common/loading'
 import ZIcon from '@/components/ZIcon/index.vue'
 import { normalSong } from '@/utils/song'
@@ -92,7 +94,7 @@ export default {
     }
   },
   components: {
-    TabBar,
+    // TabBar,
     Loading,
     ZIcon
   },
@@ -104,15 +106,16 @@ export default {
     next()
   },
   computed: {
-    ...mapGetters('User', [
-      'likedPlaylistIds'
-    ]),
+    // ...mapGetters('User', [
+    //   'likedPlaylistIds'
+    // ]),
     ...mapGetters('play', [
       'current_play_list'
     ]),
-    isLiked () {
-      return this.likedPlaylistIds.includes(this.playlist.id)
-    },
+    // isLiked () {
+    //   // 判断这个歌单使否被喜欢
+    //   return this.likedPlaylistIds.includes(this.playlist.id)
+    // },
     songs () {
       return this.tracks.filter(track => {
         return track.name.includes(this.searchKey)
@@ -136,9 +139,9 @@ export default {
     searchSongs (value) {
       this.searchKey = value
     },
-    subscribe (t, playlist) {
-      this.$store.dispatch('User/subscribePlatlist', { t, playlist })
-    },
+    // subscribe (t, playlist) {
+    //   this.$store.dispatch('User/subscribePlatlist', { t, playlist })
+    // },
     play () {
       this.$store.dispatch('play/selectPlay', { tracks: this.tracks, index: 0 })
     },

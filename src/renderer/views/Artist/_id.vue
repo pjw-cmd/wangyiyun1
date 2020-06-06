@@ -14,17 +14,17 @@
           </div>
           <img v-lazy="`${artist.img1v1Url}?param=200y200`" width="200" height="200" :key="artist.id" slot="avatar">
         </a-list-item-meta>
-        <div class="action">
+        <!-- <div class="action">
           <a-button size="small" icon="check" @click="subscribe(2, artist)" v-if="artist.followed">
             已收藏
           </a-button>
           <a-button size="small" icon="folder-add" @click="subscribe(1, artist)" v-else>
             收藏
           </a-button>
-        </div>
+        </div> -->
       </a-list-item>
     </a-list>
-    <tab-bar :tabs="tabs" @search="searchSongs" />
+    <tab-bar :tabs="tabs"  />
     <keep-alive>
       <router-view :tracks="songs" @loadmore="pushSongs" />
     </keep-alive>
@@ -53,18 +53,18 @@ export default {
           name: 'artist-id-songs',
           label: '热门歌曲'
         },
-        {
-          name: 'artist-id-mv',
-          label: 'MV'
-        },
+        // {
+        //   name: 'artist-id-mv',
+        //   label: 'MV'
+        // },
         {
           name: 'artist-id-desc',
           label: '歌手详情'
         },
-        {
-          name: 'artist-id-simi',
-          label: '相似歌手'
-        }
+        // {
+        //   name: 'artist-id-simi',
+        //   label: '相似歌手'
+        // }
       ]
     }
   },

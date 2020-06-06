@@ -1,3 +1,4 @@
+<!-- Home 页面 发现音乐的推荐页面-->
 <template>
   <home-layout>
     <div class="floors" v-if="isRenderFinish">
@@ -62,19 +63,19 @@ import banner from "./components/Banner";
 import privateContent from "./components/privateContent";
 import newSong from "./components/newSong";
 import playlist from "./components/playlist";
-import mv from "./components/mv";
-import dj from "./components/dj";
+// import mv from "./components/mv";
+// import dj from "./components/dj";
 import Loading from "@/components/Common/loading.vue";
 import DrapModal from "@/components/DrapModal/index.vue";
 import ZIcon from "@/components/ZIcon/index.vue";
 import { normalMV } from "@/utils/video";
 
 const NAVS = [
-  {
-    name: "独家放送",
-    key: "privateContent",
-    hideMore: true
-  },
+  // {
+  //   name: "独家放送",
+  //   key: "privateContent",
+  //   hideMore: true
+  // },
   {
     name: "最新音乐",
     key: "newSong"
@@ -109,8 +110,8 @@ export default {
     privateContent,
     newSong,
     playlist,
-    mv,
-    dj,
+    // mv,
+    // dj,
     Loading,
     DrapModal,
     ZIcon

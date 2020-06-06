@@ -98,13 +98,13 @@ export function user_follow({
 // 获取用户歌单
 export function getUserPlaylist(uid) {
   let params = {
-    uid,
+    user_id:uid,
     limit: 10000
   }
   if (process.env.NODE_ENV !== 'production') {
     params.timestamp = new Date().getTime()
   }
-  return request.get('/user/playlist', {
+  return request.get('/playlist/getListById', {
     params
   })
 }

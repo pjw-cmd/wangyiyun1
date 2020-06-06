@@ -2,13 +2,13 @@
   <span class="songname" :title="getTitle(row, col)">
     <span>{{ row[col.key] }}</span>
     <small class="alia" v-if="row.alia && row.alia.length">({{ row.alia.join(',') }})</small>
-    <router-link
+    <!-- <router-link
       :to="`/mv/${row.mvid}`"
       title="查看MV"
       v-if="row.mvid"
     >
       <a-icon type="youtube" />
-    </router-link>
+    </router-link> -->
   </span>
 </template>
 

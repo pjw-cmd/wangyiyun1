@@ -1,3 +1,4 @@
+<!-- 最新音乐 -->
 <template>
   <div class="newSong">
     <song-item :bordered="true" :tracks="tracks" @onclick="play" />
