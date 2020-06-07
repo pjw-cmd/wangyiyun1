@@ -1,6 +1,8 @@
 import { playMode, PLAY_HISTORY_MAX_LEN } from './../../config/config'
 import { shuffle } from '@/utils/calculate.js'
 import ls from 'store'
+// import { login_refresh, logout } from './../../api/login'
+import user from './User'
 
 const PLAY_HISTORY_KEY = '__playHistory__'
 const CURRENT_SONG_INDEX_KEY = 'current_song_index'
@@ -126,20 +128,7 @@ const actions = {
   setLyric ({ commit }, lyric) {
     commit('SET_LYRIC', lyric)
   },
-  // 追加播放,用于搜索建议单曲播放,相似歌曲播放,动态歌曲播放等
-  async appendPlay ({ commit, state }, song) {
-    let index = state.current_play_list.findIndex(item => {
-      return item.id === song.id
-    })
-    if ( index >= 0 ) {
-      commit('SET_CURRENT_INDEX', index)
-      return
-    }
-    let list = state.current_play_list.slice()
-    list.push(song)
-    commit('SET_CURRENT_PLAY_LIST', list)
-    commit('SET_CURRENT_INDEX', list.length - 1)
-  },
+ 
   // 右键菜单的下一首播放
   async nextPlay ({ commit, state }, song) {
     let index = state.current_play_list.findIndex(item => {
@@ -187,6 +176,30 @@ const actions = {
       return song.id == item.id
     }, PLAY_HISTORY_MAX_LEN)
     commit('SET_PLAY_HISTORY', songs)
+  },
+  
+   // 追加播放,用于搜索建议单曲播放,相似歌曲播放,动态歌曲播放等
+   async appendPlay ({ commit, state }, song,) {
+    let index = state.current_play_list.findIndex(item => {
+      return item.id === song.id
+    })
+    if ( index >= 0 ) {
+      commit('SET_CURRENT_INDEX', index)
+      return
+    }
+    let list = state.current_play_list.slice()
+    list.push(song)
+    commit('SET_CURRENT_PLAY_LIST', list)
+    commit('SET_CURRENT_INDEX', list.length - 1)
+  },
+  deletePlayListItem ({ commit, dispatch, state }, params) {
+    let index=findIndex(state.current_play_list,params.song)
+    
+    if (index >=0){
+      state.current_play_list.splice(index,1)
+     
+    }
+    // console.log(state.current_play_list)
   }
 }
 

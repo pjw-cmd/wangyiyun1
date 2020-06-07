@@ -1,8 +1,8 @@
 <template>
   <home-layout>
     <div class="page-artist">
-      <!-- <tags useHoverHighlight :tags="cates" @change="onTagChange" /> -->
-      <!-- <tags :tags="names" @change="onNameChange" /> -->
+      <tags useHoverHighlight :tags="cates" @change="onTagChange" />
+      <tags :tags="names" @change="onNameChange" />
 
       <ul class="artists" v-if="artists.length">
         <router-link tag="li" to="/artist-top" class="artist">
@@ -265,13 +265,13 @@ export default {
       this.options.initial = tag.name
       this.getArtists()
     }
-  }
-  /* async asyncData({$axios}) {
+  },
+   async asyncData({$axios}) {
       let {data: {artists}} = await $axios.get('/api/artist/list')
       return {
         artists
       }
-    } */
+    } 
 }
 </script>
 

@@ -1,5 +1,7 @@
 import request from '@/utils/request.js'
 
+
+
 export function getPlaylistTags () {
   return request.get('/playlist/hot')
 }

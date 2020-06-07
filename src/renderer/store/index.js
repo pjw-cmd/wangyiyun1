@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 import persistStatePlugin from './plugins/keep-state'
 import modules from './modules'
 Vue.use(Vuex)
-const myPlugin = persistStatePlugin(['User', 'play', 'Localsong', 'Setting', 'Update'])
+const myPlugin = persistStatePlugin(['User',  'Localsong', 'Setting', 'Update'])
+// const myPlugin = persistStatePlugin(['User', 'play', 'Localsong', 'Setting', 'Update'])
 
 let store = new Vuex.Store({
   modules,

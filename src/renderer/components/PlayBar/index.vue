@@ -77,7 +77,9 @@
 </template>
 
 <script>
+import { get_user_playlist } from "@/api/userplaylist";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
 import { playMode } from "@/config/config";
 import { getUrl } from "@/utils/song";
 import { getLyric } from "@/api/song";
@@ -115,6 +117,8 @@ export default {
     CurrentPlayTable
   },
   computed: {
+    ...mapState("User", ["userInfo"]),
+    ...mapState("play", ["current_play_list"]),
     ...mapState(["play"]),
     ...mapGetters("play", [
       "mode",
@@ -215,6 +219,7 @@ export default {
     },
     current_song: "handleSongChange"
   },
+  created() {},
   mounted() {
     this.$electron.ipcRenderer.on("toggle-play", (e, data) => {
       this.$store.commit("play/SET_PLAY_STATUS", data.value);
@@ -254,6 +259,26 @@ export default {
             this.isSongReady = true;
           });
       }
+    }
+    // 根据userId,获取播放列表
+
+    let that = this;
+    if (this.userInfo != undefined) {
+      let result = get_user_playlist(this.userInfo.userId);
+      result.then(
+        function(value) {
+          let data = value.data;
+          if (data.length > 0) {
+            // 拿到了播放列表
+            console.log("PlayBar/inedx.vue", data);
+            console.log("12312312",data)
+            that.$store.commit("play/SET_CURRENT_PLAY_LIST", data);
+          }
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
     }
   },
   methods: {

@@ -56,8 +56,6 @@ export default {
   methods: {
 
     onClick (song, index) {
-      console.log("song_item");
-      console.log(song);
       this.$emit('onclick', song, index)
     }
   }
