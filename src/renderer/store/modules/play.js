@@ -1,9 +1,8 @@
 import { playMode, PLAY_HISTORY_MAX_LEN } from './../../config/config'
 import { shuffle } from '@/utils/calculate.js'
 import ls from 'store'
+import { uniqueData } from '@/utils/assist'
 // import { login_refresh, logout } from './../../api/login'
-import user from './User'
-
 const PLAY_HISTORY_KEY = '__playHistory__'
 const CURRENT_SONG_INDEX_KEY = 'current_song_index'
 const CURRENT_PLAY_LIST_KEY = 'current_play_list'
@@ -157,16 +156,44 @@ const actions = {
   },
   // 双击的播放
   async selectPlay ({ commit, state }, { tracks, index }) {
-    if ( tracks.length < 1 ) return
-    commit('SET_ORIGINAL_PLAY_LIST', tracks)
-    if ( state.mode === playMode.random ) {
-      let randomList = shuffle(tracks)
-      commit('SET_CURRENT_PLAY_LIST', randomList)
-      index = findIndex(randomList, tracks[ index ])
-    } else {
-      commit('SET_CURRENT_PLAY_LIST', tracks)
+    let song=tracks[index]
+    let old_index = state.current_play_list.findIndex(item => {
+      return item.id === song.id
+    })
+    if ( old_index >= 0 ) {
+      commit('SET_CURRENT_INDEX', index)
+      return
     }
-    commit('SET_CURRENT_INDEX', index)
+    let list = state.current_play_list.slice()
+    list.push(song)
+    commit('SET_CURRENT_PLAY_LIST', list)
+    commit('SET_CURRENT_INDEX', list.length - 1)
+    
+    // let index = state.current_play_list.findIndex(item => {
+    //   return item.id === song.id
+    // })
+
+    // // 融合两个
+    // let current_play_list = state.current_play_list.slice()
+    // let song = tracks[index]
+    // let list = current_play_list.concat(song)
+    // index=list.length()-1
+    // // console.log("selectPlay_0",index)
+    // // console.log("selectPlay_1",list)
+    // // console.log("selectPlay_2",song)
+    // list = uniqueData(list)
+    // let new_id= list.findIndex(song)
+    // console.log("selectPlay_3",new_id)
+    // if ( tracks.length < 1 ) return
+    // commit('SET_ORIGINAL_PLAY_LIST', tracks)
+    // if ( state.mode === playMode.random ) {
+    //   let randomList = shuffle(tracks)
+    //   commit('SET_CURRENT_PLAY_LIST', randomList)
+    //   index = findIndex(randomList, tracks[ index ])
+    // } else {
+    //   commit('SET_CURRENT_PLAY_LIST', tracks)
+    // }
+    // commit('SET_CURRENT_INDEX', index)
     // commit('SET_PLAY_STATUS', true)
   },
   addHistorySong ({ commit }, song) {

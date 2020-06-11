@@ -65,20 +65,22 @@
   },
   "author": "",
   "license": "ISC",
+
   "build": {
     "productName": "music_cloud",
     "appId": "edu.zjgsu.chm",
     "copyright": "123",
     "directories": {
-      "output": "out"
+        "output": "out"
     },
     "win": {
-      "icon": "build/electron-icon/icon.ico",
-      "target": [
-        {
-          "target": "nsis"
-        }
-      ]
+        "icon": "build/electron-icon/icon.ico",
+        "target": [
+            {
+                "target": "nsis"
+            }
+        ]
     }
   }
+  
 }

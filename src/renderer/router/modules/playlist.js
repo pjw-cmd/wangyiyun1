@@ -8,6 +8,21 @@ let playlistRoutes = [
     }
   },
   {
+    path: '/my-playlist',
+    component: () => import(/* webpackChunkName: "playlist" */ '@/views/Home/my_playlist.vue'),
+    name: 'my-playlist',
+    meta: {
+      title: '我的歌单'
+    },
+    // children: [
+    //   {
+    //     path: '/my-playlist/tracks',
+    //     component: () => import(/* webpackChunkName: "playlist-id-tracks" */ '@/views/Playlist/_id/tracks.vue'),
+    //     name: 'my-playlist-id-tracks'
+    //   }
+    // ]
+  },
+  {
     path: '/playlist-highquality',
     component: () => import(/* webpackChunkName: "playlist-highquality" */ '@/views/Playlist/highquality.vue'),
     name: 'playlist-highquality',

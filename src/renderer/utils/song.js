@@ -2,6 +2,8 @@ import { getLyric, getSongUrl, getIntelligence } from '@/api/song'
 
 // param图片宽高
 export function normalSong (song, param = '200y200', isFm = false) {
+  
+
   let avatar = (song.album && (song.album.picUrl || song.album.artist.img1v1Url)) || (song.al && song.al.picUrl) || 'images/default_album.jpg'
   return {
     id: song.id,

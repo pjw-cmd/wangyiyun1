@@ -9,7 +9,7 @@
             <div class="day">{{getDate()}}</div>
           </div>
         </div>
-        <div>每日歌曲推荐</div>
+        <div>也许你会喜欢的</div>
       </li>
       <list-item class="list-item" v-for="(item) in playlist" :item="item" :key="item.id">
         <div slot="copywriter" class="copywriter" v-if="item.copywriter">{{item.copywriter}}</div>
@@ -49,7 +49,7 @@ export default {
       return new Date().getDate()
     },
     goLink () {
-      this.$router.push({ path: '/recomment_songs' })
+      this.$router.push({ path: '/my-playlist' })
     }
   }
 }
