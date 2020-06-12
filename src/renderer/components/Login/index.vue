@@ -40,7 +40,7 @@
       <div class="register" @click="toRegister">注册</div>
     </div>
     <div v-else>
-      <a-form id="login" :form="form" @submit="handleSubmit">
+      <a-form id="login" :form="form" @submit="handleRegSubmit">
         <a-form-item>
           <a-input
             v-decorator="['user_name',{rules: [{ required: true, message: '用户不能为空!' }]}]"
@@ -61,7 +61,7 @@
         </a-form-item>
         <a-form-item>
           <a-input
-            v-decorator="['user_password',{rules: [{ required: true, message: '密码不能为空!' }]}]"
+            v-decorator="['user_password_second',{rules: [{ required: true, message: '密码不能为空!' }]}]"
             type="password"
             placeholder="再次输入密码"
           >
@@ -77,6 +77,7 @@
           >注册</a-button>
         </a-form-item>
       </a-form>
+      <div class="register" @click="toLogin">返回登录</div>
     </div>
   </a-modal>
 </template>
@@ -84,7 +85,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 // import { login_cellphone, user_detail } from '@/api/user'
-import { login, user_detail } from "@/api/user";
+import { login, user_detail, register } from "@/api/user";
 import eventBus from "@/utils/eventBus";
 import { setTimeout } from "timers";
 export default {
@@ -127,6 +128,9 @@ export default {
       // this.showLogin = false;
       this.now_login = false;
     },
+    toLogin() {
+      this.now_login = true;
+    },
     handleSubmit(e) {
       e.preventDefault();
       this.loading = true;
@@ -134,6 +138,45 @@ export default {
         if (!err) {
           try {
             const result = await login(values);
+            // let { code, account } = await login(values)
+            let code = result.code;
+            let msg = result.msg;
+            if (code === 200) {
+              let user_id = result.data;
+              localStorage.setItem("userId", user_id);
+              this.$store.commit("User/SET_SHOW_LOGIN", false);
+              // const detail = await user_detail(id)
+              this.$store.commit("User/SET_USER_INFO", {
+                userId: user_id,
+                userName: values.userName
+                // ...detail
+              });
+              setTimeout(() => {
+                if (this.$route.name === "home") {
+                  eventBus.$emit("refresh");
+                } else {
+                  let redirect = this.redirect || "/home";
+                  this.$router.push({ path: redirect });
+                }
+                this.loading = false;
+              }, 100);
+            } else {
+              this.loading = false;
+            }
+          } catch (error) {
+            this.loading = false;
+          }
+        }
+      });
+    },
+    handleRegSubmit(e) {
+      e.preventDefault();
+      this.loading = true;
+      console.log("index");
+      this.form.validateFields(async (err, values) => {
+        if (!err) {
+          try {
+            const result = await register(values);
             // let { code, account } = await login(values)
             let code = result.code;
             let msg = result.msg;
@@ -181,7 +224,7 @@ export default {
 }
 
 #login {
-  margin-top: 180px;
+  margin-top: 140px;
 }
 
 #login .login-form-button {

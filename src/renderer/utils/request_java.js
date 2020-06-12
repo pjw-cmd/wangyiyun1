@@ -39,7 +39,9 @@ instance.interceptors.response.use(
         if (response.data.code && response.data.code === 200) {
             return response.data
         }
-        Message.warn(response.data.msg || response.statusText)
+        console.log(response.data)
+        // Message.warn(response.data.message || response.statusText)
+        Message.error(response.data.message)
         return Promise.reject(response.data)
     },
     error => {

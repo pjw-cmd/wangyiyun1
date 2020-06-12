@@ -2,7 +2,7 @@ import Message from 'ant-design-vue/es/message'
 import { login_refresh, logout } from './../../api/login'
 import {
   getUserPlaylist,
-  getUserLikeSongs,
+  // getUserLikeSongs,
   // likePlaylist,
   // likeMusic,
   deletePlaylist,
@@ -66,11 +66,12 @@ let actions = {
     await login_refresh()
   },
   async logout ({ commit }) {
-    let { code } = await logout()
-    if (code === 200) {
+    let result = await logout()
+    console.log(result)
+    if (result.code === 200) {
       localStorage.removeItem('userId')
       commit('SET_USER_PLAYLISTS', [])
-      commit('SET_LIKEDSONG_IDS', [])
+      // commit('SET_LIKEDSONG_IDS', [])
       commit('SET_USER_INFO', {})
     }
   },

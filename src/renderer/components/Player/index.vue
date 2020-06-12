@@ -13,10 +13,10 @@
                   <song-heart :isLiked="isLiked" style="marginRight:4px"/>
                   <span>喜欢</span>
               </a-button> -->
-              <collect-btn />
-              <a-button icon="share-alt" :disabled="!!current_song.folder" @click="share">
+              <!-- <collect-btn /> -->
+              <!-- <a-button icon="share-alt" :disabled="!!current_song.folder" @click="share">
                 分享
-              </a-button>
+              </a-button> -->
               <a-button :disabled="!!current_song.folder || downloadstatus.downloaded" :icon="downloadstatus.icon" @click="download(current_song)">
                 {{downloadstatus.text}}
               </a-button>
@@ -36,7 +36,8 @@
             <div class="info">
               <div class="album" :title="current_song.album.name" v-if="current_song.album">
                 专辑：
-                <router-link :to="`/album/${current_song.album.id}`" class="value">{{current_song.album.name}}</router-link>
+                <!-- <router-link :to="`/album/${current_song.album.id}`" class="value">{{current_song.album.name}}</router-link> -->
+                <router-link  class="value">{{current_song.album.name}}</router-link>
               </div>
               <div class="singer" v-if="current_song.artist">
                 歌手：
@@ -65,12 +66,12 @@
             </div>
           </div>
         </div>
-        <div class="main-bottom">
+        <!-- <div class="main-bottom">
           <div class="left" v-if="!refresh && !this.current_song.folder">
             <comment :commentData="comment" v-if="!current_song.folder"></comment>
             <infinite-loading :identifier="infiniteId" @infinite="loadmore" />
-          </div>
-          <div class="right">
+          </div> -->
+          <!-- <div class="right">
             <div class="col" v-if="!this.current_song.folder && simiPlaylists.length">
               <h5 class="title">包含这首歌的歌单</h5>
               <ul>
@@ -82,8 +83,8 @@
                   </div>
                 </li>
               </ul>
-            </div>
-            <div class="col" v-if="!this.current_song.folder && simiSongs.length">
+            </div> -->
+            <!-- <div class="col" v-if="!this.current_song.folder && simiSongs.length">
               <h5 class="title">相似歌曲</h5>
               <ul>
                 <li v-for="(song, index) in simiSongs" :key="song.id" class="simi-song" @click="play(simiSongs, index)">
@@ -94,8 +95,8 @@
                   </div>
                 </li>
               </ul>
-            </div>
-            <div class="col" v-if="!this.current_song.folder && users.length">
+            </div> -->
+            <!-- <div class="col" v-if="!this.current_song.folder && users.length">
               <h5 class="title">喜欢这首歌的人</h5>
               <ul>
                 <li v-for="user in users" :key="user.userId" class="related-user" @click="goUserRoute(user.userId)">
@@ -110,9 +111,9 @@
                   <div class="time">{{user.recommendReason}}</div>
                 </li>
               </ul>
-            </div>
-          </div>
-        </div>
+            </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
       </section>
       <div class="bg-player" :style="'backgroundImage: url('+current_song.avatar+')'" v-if="Object.keys(current_song).length"></div>
     </div>

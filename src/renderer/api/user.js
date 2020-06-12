@@ -4,6 +4,10 @@ export function login(params) {
   return request.post('/user/login', params)
 }
 
+export function register(params){
+  return request.post('/user/register', params)
+}
+
 export function login_cellphone(params) {
   return request.get('/login/cellphone', {
     params

@@ -2,6 +2,10 @@
 
 > Electron+Vue+Ant Design 
 
+## Start from 
+
+Vue CLI Plugin Electron Builder
+
 ## Build from source code
 
 npm install 
