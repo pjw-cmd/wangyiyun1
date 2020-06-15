@@ -39,10 +39,10 @@
       </a-popover>
       <tags :tags="{'热门标签':tags}" @change="onTagChange" />
       <ul class="playlists" v-if="playlists.length">
-        <router-link tag="li" to="/playlist-highquality" class="list-item">
+        <!-- <router-link tag="li" to="/playlist-highquality" class="list-item">
           <img class="avatar" src="./../../assets/images/playlist-top.png" />
           <div>精品歌单精心推荐,给最懂音乐的你</div>
-        </router-link>
+        </router-link> -->
         <list-item class="list-item" v-for="(item) in playlists" :item="item" :key="item.id" />
       </ul>
       <div class="page">

@@ -28,7 +28,7 @@
           <div class="right" v-if="Object.keys(current_song).length">
             <h4 class="name">
               <span>{{current_song.name}}</span>
-              <router-link to="/" v-if="current_song.mv" class="label">mv</router-link>
+              <!-- <router-link to="/" v-if="current_song.mv" class="label">mv</router-link> -->
             </h4>
             <div class="alia" v-if="current_song.alia && current_song.alia.length">
               <span v-for="(item ,index) in current_song.alia" :key="index">{{item.name}}</span>
@@ -36,8 +36,9 @@
             <div class="info">
               <div class="album" :title="current_song.album.name" v-if="current_song.album">
                 专辑：
+                <p>{{current_song.album.name}}</p>
                 <!-- <router-link :to="`/album/${current_song.album.id}`" class="value">{{current_song.album.name}}</router-link> -->
-                <router-link  class="value">{{current_song.album.name}}</router-link>
+                <!-- <router-link  class="value">{{current_song.album.name}}</router-link> -->
               </div>
               <div class="singer" v-if="current_song.artist">
                 歌手：
@@ -280,18 +281,6 @@ export default {
       if (!this.playing) {
         this.lyric.stop()
       }
-    },
-    share () {
-      let url = `https://music.163.com/#/song?id=${this.current_song.id}`
-      let _shareUrl = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?'
-      _shareUrl += 'url=' + url
-      _shareUrl += '&showcount=' + 1 // 参数showcount是否显示分享总数,显示：'1'，不显示：'0'，默认不显示
-      _shareUrl += '&desc=' + '♪我发现一首不错的歌曲-' + this.current_song.name
-      _shareUrl += '&summary=' + '分享摘要'
-      _shareUrl += '&title=' + '♪我发现一首不错的歌曲-' + this.current_song.name
-      _shareUrl += '&site=' + 'https://music.163.com/'
-      _shareUrl += '&pics=' + this.current_song.avatar
-      this.$electron.remote.shell.openExternal(_shareUrl)
     },
     shrinkScreen () {
       this.$store.commit('play/SET_FULLSCREEN', false)

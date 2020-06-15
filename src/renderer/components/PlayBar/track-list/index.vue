@@ -204,12 +204,12 @@ export default {
             key: "artist",
             sorter: (a, b) => a.artist[0].name.localeCompare(b.artist[0].name)
           },
-          {
-            title: "专辑",
-            dataIndex: "album",
-            key: "album",
-            sorter: (a, b) => a.album.name.localeCompare(b.album.name)
-          },
+          // {
+          //   title: "专辑",
+          //   dataIndex: "album",
+          //   key: "album",
+          //   sorter: (a, b) => a.album.name.localeCompare(b.album.name)
+          // },
           {
             title: "时长",
             dataIndex: "duration",

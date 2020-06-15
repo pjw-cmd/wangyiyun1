@@ -9,8 +9,8 @@
           </div>
           <div slot="description" class="desc">
             <div>单曲数：{{artist.musicSize}}</div>
-            <div>专辑数：{{artist.albumSize}}</div>
-            <div>MV数：{{artist.mvSize}}</div>
+            <!-- <div>专辑数：{{artist.albumSize}}</div> -->
+            <!-- <div>MV数：{{artist.mvSize}}</div> -->
           </div>
           <img v-lazy="`${artist.img1v1Url}?param=200y200`" width="200" height="200" :key="artist.id" slot="avatar">
         </a-list-item-meta>
@@ -45,10 +45,10 @@ export default {
       searchKey: '',
       loading: false,
       tabs: [
-        {
-          name: 'artist-id-album',
-          label: '专辑'
-        },
+        // {
+        //   name: 'artist-id-album',
+        //   label: '专辑'
+        // },
         {
           name: 'artist-id-songs',
           label: '热门歌曲'

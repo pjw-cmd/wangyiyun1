@@ -31,11 +31,11 @@ let artistRoutes = [
         component: () => import(/* webpackChunkName: "artist-id-album" */ '@/views/Artist/_id/album.vue'),
         name: 'artist-id-album'
       },
-      {
-        path: '/artist/:id/mv',
-        component: () => import(/* webpackChunkName: "artist-id-mv" */ '@/views/Artist/_id/mv.vue'),
-        name: 'artist-id-mv'
-      },
+      // {
+      //   path: '/artist/:id/mv',
+      //   component: () => import(/* webpackChunkName: "artist-id-mv" */ '@/views/Artist/_id/mv.vue'),
+      //   name: 'artist-id-mv'
+      // },
       {
         path: '/artist/:id/desc',
         component: () => import(/* webpackChunkName: "artist-id-desc" */ '@/views/Artist/_id/desc.vue'),
