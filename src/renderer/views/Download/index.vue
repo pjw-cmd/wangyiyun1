@@ -2,7 +2,7 @@
   <div class="download">
     <div class="download-header">
       <a-radio-group buttonStyle="solid" v-model="value">
-        <a-radio-button value="downloaded">已下载单曲</a-radio-button>
+        <!-- <a-radio-button value="downloaded">已下载单曲</a-radio-button> -->
         <a-radio-button value="downloading">正在下载</a-radio-button>
       </a-radio-group>
     </div>

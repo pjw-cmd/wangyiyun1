@@ -47,7 +47,8 @@ export default {
     SongHeart
   },
   computed: {
-    ...mapGetters('User', ['userId', 'likedsongIds']),
+    ...mapGetters('User', ['userId']),
+    // ...mapGetters('User', ['userId', 'likedsongIds']),
     ...mapGetters('play', ['current_song', 'fullscreen'])
   },
   methods: {

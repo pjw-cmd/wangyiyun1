@@ -179,9 +179,7 @@ export default {
       'source',
       'current_lyric_line'
     ]),
-    ...mapGetters('User', [
-      'likedsongIds', 'createdList', 'userId'
-    ]),
+    ...mapGetters('User', ['createdList', 'userId']),
     // isLiked () {
     //   return this.likedsongIds.includes(this.current_song.id)
     // },
@@ -219,6 +217,7 @@ export default {
     },
     fullscreen (newVal) {
       if (newVal) {
+        console.log("asd")
         this.unWatcher_lyric = this.$watch('current_lyric_line', (newLine) => {
           if (this.fixLyric) return
           const lines = this.$refs.lyrics.$refs.lyricLine
@@ -245,9 +244,9 @@ export default {
         this.$nextTick(() => {
           this.refresh = false
         })
-        this._getSimiPlaylist(this.current_song.id)
-        this._getSimiSong(this.current_song.id)
-        this._getSongUsers(this.current_song.id)
+        // this._getSimiPlaylist(this.current_song.id)
+        // this._getSimiSong(this.current_song.id)
+        // this._getSongUsers(this.current_song.id)
       } else {
         this.isAddAnimation = false
         this.unWatcher_lyric && this.unWatcher_lyric()
