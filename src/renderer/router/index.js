@@ -7,12 +7,9 @@ import { recommendRoutes } from './modules/recommend'
 import { myMusicRoutes } from './modules/myMusic'
 import { playlistRoutes } from './modules/playlist'
 import { artistRoutes } from './modules/artist'
-// import { albumRoutes } from './modules/album'
-// import { djRoutes } from './modules/dj'
+
 import { rankRoutes } from './modules/rank'
 import { settingRoutes } from './modules/setting'
-import { searchRoutes } from './modules/search'
-import { videoRoutes } from './modules/video'
 import { userRoutes } from './modules/user'
 import { ipcRenderer } from 'electron'
 import Toast from './../components/Toast/toast'
@@ -31,12 +28,8 @@ const router = new Router({
         ...myMusicRoutes,
         ...playlistRoutes,
         ...artistRoutes,
-        // ...albumRoutes,
-        ...searchRoutes,
-        ...videoRoutes,
         ...userRoutes,
         ...settingRoutes,
-        // ...djRoutes,
         {
           path: '/offline',
           name: 'offline',
